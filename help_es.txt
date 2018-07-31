@@ -1,0 +1,40 @@
+# Desarrollo o https://dev-logs.e-contact.cl
+#
+# https://gist.github.com/ruanbekker/e8a09604b14f37e8d2f743a87b930f93
+# http://elasticsearch-cheatsheet.jolicode.com/#indexes
+#
+
+
+# crear el indice sin mapping
+curl -X PUT 'http://10.33.32.115:9200/backup_log'    
+acknowledged":true,"shards_acknowledged":true,"index":"backup_log"}
+
+# Ejemplo con settigs 
+curl -XPUT 'localhost:9200/twitter?pretty' -H 'Content-Type: application/json' -d'
+{
+    "settings" : {
+        "index" : {
+            "number_of_shards" : 3, 
+            "number_of_replicas" : 2 
+        }
+    }
+}
+'
+
+
+# revisar su mappings
+curl -X GET http://10.33.32.115:9200/backup_log/_mappings
+{
+    "backup_log": {
+        "mappings": {}
+    }
+}
+
+# borrar un indice
+curl -X DELETE http://10.33.32.115:9200/my_app
+{"acknowledged":true}
+
+# lista todos los indices
+curl -X GET   'http://10.33.32.115:9200/_cat/indices?v='
+
+
